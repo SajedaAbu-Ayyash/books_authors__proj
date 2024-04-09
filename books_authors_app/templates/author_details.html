@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ author.title }}</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="{% static 'css/author_details.css' %}" />
+  </head>
+  <body>
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-md-8 mx-auto">
+          <div class="card">
+            <div class="card-header">
+              <h2 class="text-center">
+                {{ author.first_name }} {{ author.last_name }}
+              </h2>
+            </div>
+            <div class="card-body">
+              <h4>ID: {{ author.id }}</h4>
+              <h4>Notes</h4>
+              <p>{{ author.note }}</p>
+
+              <h4>Books:</h4>
+              <ul>
+                {% for book in author.books.all %}
+                <li>{{ book.title }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+            <div class="card-footer text-center">
+              <form action="{{author.id}}/add_book_to_author" method="post">
+                {% csrf_token %}
+                <select name="author_for_book" class="custom-select mb-3">
+                  <option value="" selected>Select a Book</option>
+                  {% for book in books %}
+                  <option value="{{book.id}}">{{ book.title }}</option>
+                  {% endfor %}
+                </select>
+                <input type="submit" value="Add Book" class="btn btn-primary" />
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

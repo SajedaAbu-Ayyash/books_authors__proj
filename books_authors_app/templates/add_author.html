@@ -1,0 +1,55 @@
+{% load static %} {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add an Author</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="{% static 'css/add_author.css' %}" />
+  </head>
+  <body>
+    <div class="div-1">
+      <h1>Add an Author</h1>
+      <br />
+      <form action="/submit_author" method="post">
+        {% csrf_token %}
+        <label for="first_name"> First Name</label>
+        <input type="text" name="first_name" required />
+        <br />
+        <label for="last_name">Last Name</label>
+        <input type="text" name="last_name" required />
+        <br />
+        <label for="notes">Notes</label>
+        <input type="text" name="notes" id="" />
+        <button type="submit">Add</button>
+        <!-- <input type="submit" class="add" value="Add" /> -->
+      </form>
+    </div>
+    <div class="div-2">
+      <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for author in authors %}
+          <tr>
+            <td>{{ author.id }}</td>
+            <td>{{ author.first_name }} {{ author.last_name }}</td>
+            <td><a href="/authors/{{ author.id }}">View</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Books and Authors Main</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <h1>Welcome to our website Books and Authors!</h1>
+    <h3>"The world belongs to those who read."</h3>
+
+    <div class="main">
+      <div>
+        <img src="{% static 'imgs/books.jpg' %}" alt="books" />
+        <br />
+        <a href="/add_book">Add a Book</a>
+      </div>
+      <div>
+        <img src="{% static 'imgs/Dostoevsky.jpg' %}" alt="Dostoevsky" />
+        <br />
+        <a href="/add_author">Add an Author</a>
+      </div>
+    </div>
+  </body>
+</html>
